@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Componente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="#">Escola Técnica</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="/alunos/lista">Alunos</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cursos/lista">Cursos</a></li>
+                <li class="nav-item"><a class="nav-link" href="/componentes/lista">Componentes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/turmas/lista">Turmas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/matriculas/lista">Matrículas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Cadastro de Componente</h2>
+
+    <!-- Alertas -->
+    <div th:if="${erro}" class="alert alert-danger" th:text="${erro}"></div>
+    <div th:if="${sucesso}" class="alert alert-success" th:text="${sucesso}"></div>
+
+    <form th:action="@{/componentes/salvar}" th:object="${componenteModel}" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label for="nomeComponente" class="form-label">Nome do Componente *</label>
+            <input type="text" th:field="*{nomeComponente}" class="form-control" id="nomeComponente" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="cargaHoraria" class="form-label">Carga Horária *</label>
+            <input type="number" th:field="*{cargaHoraria}" class="form-control" id="cargaHoraria" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="curso" class="form-label">Curso *</label>
+            <select th:field="*{curso.cursoId}" class="form-select" id="curso" required>
+                <option th:each="curso : ${cursos}" 
+                        th:value="${curso.cursoId}" 
+                        th:text="${curso.nomeCurso}">Curso</option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="/componentes/lista" class="btn btn-secondary">Voltar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

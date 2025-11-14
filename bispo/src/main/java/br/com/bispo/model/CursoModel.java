@@ -23,7 +23,7 @@ public class CursoModel {
 	private String descricao;
 	
 	@Column(name = "carga_horaria")
-	private Long cargaHoraria;
+	private Integer cargaHoraria;
 
 	public Long getCursoId() {
 		return cursoId;
@@ -49,11 +49,11 @@ public class CursoModel {
 		this.descricao = descricao;
 	}
 
-	public Long getCargaHoraria() {
+	public Integer getCargaHoraria() {
 		return cargaHoraria;
 	}
 
-	public void setCargaHoraria(Long cargaHoraria) {
+	public void setCargaHoraria(Integer cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
 	

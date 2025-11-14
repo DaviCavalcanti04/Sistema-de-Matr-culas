@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "matricula", schema = "escola_db" )
 public class MatriculaModel {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "matricula_id")

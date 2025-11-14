@@ -18,13 +18,13 @@ public class AlunoModel {
 	@Column(name = "aluno_id")
 	private Long alunoId;	
 	
-	@Column(name = "nome_completo")
-	private String nomeCompleto;
+	@Column(name = "nome_aluno")
+	private String nomeAluno;
 	
 	@Column(name = "cpf")
 	private String cpf;
 	
-	@Column(name = "nascimento")
+	@Column(name = "data_nascimento")
 	private Date nascimento;
 	
 	@Column(name = "email")
@@ -41,12 +41,12 @@ public class AlunoModel {
 		this.alunoId = alunoId;
 	}
 
-	public String getNomeCompleto() {
-		return nomeCompleto;
+	public String getNomeAluno() {
+		return nomeAluno;
 	}
 
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+	public void setNomeAluno(String nomeAluno) {
+		this.nomeAluno = nomeAluno;
 	}
 
 	public String getCpf() {
@@ -80,7 +80,6 @@ public class AlunoModel {
 	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
-	
 	
 
 }
