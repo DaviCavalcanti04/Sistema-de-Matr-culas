@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.bispo.model.AlunoModel;
 import br.com.bispo.model.MatriculaModel;
+import br.com.bispo.model.TurmaModel;
 import br.com.bispo.repository.AlunoRepository;
 import br.com.bispo.repository.MatriculaRepository;
 import br.com.bispo.repository.TurmaRepository;
@@ -40,9 +42,21 @@ public class MatriculaController {
     }
 
     @PostMapping("matriculas/salvar")
-    public String salvarMatricula(@ModelAttribute("matriculaModel") MatriculaModel matricula, RedirectAttributes redirectAttributes) {
-        matricula.setData_matricula(new java.sql.Date(System.currentTimeMillis()));
-    	matriculaRepo.save(matricula);
+    public String salvarMatricula(ModelMap model,@ModelAttribute("matriculaModel") MatriculaModel matricula, RedirectAttributes redirectAttributes) {
+    	 Long alunoId = matricula.getAluno().getAlunoId();
+         Long turmaId = matricula.getTurma().getTurmaId();
+         AlunoModel aluno = alunoRepo.findById(alunoId).orElse(null);
+         TurmaModel turma = turmaRepo.findById(turmaId).orElse(null);
+
+    	 if (matriculaRepo.findByAlunoAndTurma(aluno, turma).isPresent()) {
+    	        model.addAttribute("mensagemErro", "Aluno já está matriculado nessa turma!");
+    	        model.addAttribute("matriculaModel", matricula);
+    	        model.addAttribute("alunos", alunoRepo.findAll());
+    	        model.addAttribute("turmas", turmaRepo.findAll());
+    	        return "matriculas/novo";
+    	 }
+    	matricula.setData_matricula(new java.sql.Date(System.currentTimeMillis()));
+       	matriculaRepo.save(matricula);
         redirectAttributes.addFlashAttribute("mensagem", "Operação realizada com sucesso!");
         return "redirect:/matriculas/lista";
     }

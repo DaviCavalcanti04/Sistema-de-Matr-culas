@@ -1,6 +1,6 @@
 package br.com.bispo.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,13 +25,13 @@ public class AlunoModel {
 	private String cpf;
 	
 	@Column(name = "data_nascimento")
-	private Date nascimento;
+	private LocalDate nascimento;
 	
 	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "telefone")
-	private Long telefone;
+	private String telefone;
 
 	public Long getAlunoId() {
 		return alunoId;
@@ -57,11 +57,11 @@ public class AlunoModel {
 		this.cpf = cpf;
 	}
 
-	public Date getNascimento() {
+	public LocalDate getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(LocalDate nascimento) {
 		this.nascimento = nascimento;
 	}
 
@@ -73,11 +73,11 @@ public class AlunoModel {
 		this.email = email;
 	}
 
-	public Long getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	

@@ -25,30 +25,32 @@
 <div class="container">
     <h2>Nova Matrícula</h2>
 
-    <form th:action="@{/matriculas/salvar}" th:object="${matriculaModel}" method="post">
-        <div class="mb-3">
-            <label for="aluno" class="form-label">Aluno:</label>
-            <select th:field="*{alunoId}" class="form-select" required>
-                <option value="" disabled selected>Selecione o aluno</option>
-                <option th:each="aluno : ${alunos}" 
-                        th:value="${aluno.alunoId}" 
-                        th:text="${aluno.nomeAluno}"></option>
-            </select>
-        </div>
+	<div th:if="${mensagemErro}" class="alert alert-danger">
+	    <span th:text="${mensagemErro}"></span>
+	</div>
+	
+	
+	<form th:action="@{/matriculas/salvar}" th:object="${matriculaModel}" method="post">
+	    <div class="mb-3">
+	        <label for="aluno" class="form-label">Aluno:</label>
+			<select th:field="*{aluno.alunoId}" class="form-select" required>
+			    <option value="" disabled selected>Selecione o aluno</option>
+			    <option th:each="aluno : ${alunos}" 
+			            th:value="${aluno.alunoId}" 
+			            th:text="${aluno.nomeAluno}"></option>
+			</select>
 
-        <div class="mb-3">
-            <label for="turma" class="form-label">Turma:</label>
-            <select th:field="*{turmaId}" class="form-select" required>
-                <option value="" disabled selected>Selecione a turma</option>
-                <option th:each="turma : ${turmas}" 
-                        th:value="${turma.turmaId}" 
-                        th:text="${turma.componente.nomeComponente + ' - ' + turma.ano + '/' + turma.semestre + ' (' + turma.turno + ')'}"></option>
-            </select>
-        </div>
+			<select th:field="*{turma.turmaId}" class="form-select" required>
+			    <option value="" disabled selected>Selecione a turma</option>
+			    <option th:each="turma : ${turmas}" 
+			            th:value="${turma.turmaId}" 
+			            th:text="${turma.componente.nomeComponente + ' - ' + turma.ano + '/' + turma.semestre + ' (' + turma.turno + ')'}"></option>
+			</select>
+	    </div>
 
-        <button type="submit" class="btn btn-success">Salvar</button>
-        <a href="/matriculas/lista" class="btn btn-secondary">Cancelar</a>
-    </form>
+	    <button type="submit" class="btn btn-success">Salvar</button>
+	    <a href="/matriculas/lista" class="btn btn-secondary">Cancelar</a>
+	</form>
 </div>
 
 </body>

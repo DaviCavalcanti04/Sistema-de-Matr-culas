@@ -42,7 +42,7 @@
             <td th:text="${aluno.alunoId}"></td>
             <td th:text="${aluno.nomeAluno}"></td>
             <td th:text="${aluno.cpf}"></td>
-            <td th:text="${#dates.format(aluno.nascimento, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(aluno.nascimento, 'dd/MM/yyyy')}"></td>
             <td th:text="${aluno.email}"></td>
             <td th:text="${aluno.telefone}"></td>
         </tr>
