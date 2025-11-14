@@ -67,7 +67,7 @@ public class AlunoController {
 		}
 		alunoRepo.save(aluno);
 		redirectAttributes.addFlashAttribute("mensagem", "Operação realizada com sucesso!");
-		return "redirect:/";
+		return "redirect:/alunos/lista";
 	}
 
 	@GetMapping("/alunos/matriculas")
